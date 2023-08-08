@@ -1,2 +1,0 @@
-token 30 days : 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
-deadline is : 8/9/2023
