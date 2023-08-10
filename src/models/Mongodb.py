@@ -24,6 +24,7 @@ class mongoCompass:
         self.database_list = self.client.list_database_names()
         print("Databases:",self.database_list)
         return self.database_list
+    
     def deleteDatabase(self, nameDb):
         return self.client.drop_database(nameDb)
     
@@ -37,6 +38,9 @@ class mongoCompass:
         self.listCollections = self.col.list_collection_names()
         print("Current Database:",database,"\nCollections:",self.listCollections)
         return self.listCollections
+    
+    def deleteCollection(self, nameDb,nameColl):
+        return self.client[nameDb].drop_collection(nameColl)
     
     def showDocument(self, col):
         listDoc = []
