@@ -1,42 +1,47 @@
 from pymongo.mongo_client import MongoClient
+class mongoCompass:
+    def __init__(self):
+        print("Hello MongoDB")
 
-uri = "mongodb+srv://lethhai3003:U7UJf16dTHjUuBXh@cluster0.oqg68nh.mongodb.net/"
+    def connect(self,uri):
 
-# Create a new client and connect to the server
-client = MongoClient(uri)
+        self.uri = uri
+        self.client = MongoClient(uri)
 
-
-
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
-
-# Lấy danh sách tên cơ sở dữ liệu
-database_list = client.list_database_names()
-
-# In danh sách các cơ sở dữ liệu
-for db_name in database_list:
-    print(db_name)
+        try:
+            self.client.admin.command('ping')
+            print("Pinged your deployment. You successfully connected to MongoDB!")
+        except Exception as e:
+            print(e)
 
 
-# Chon database myFirstDatabase
-myFirstDatabase = client["user"]
-listCollectionNames = myFirstDatabase.list_collection_names()
+    def listDatabase(self):
+        # Lấy danh sách tên cơ sở dữ liệu
+        self.database_list = self.client.list_database_names()
+        print("Databases:",self.database_list)
+        return self.database_list
+    
+    def listCollection(self, database):
+        self.col = self.client[database]
+        self.listCollections = self.col.list_collection_names()
+        print("Current Database:",database,"\nCollections:",self.listCollections)
+        return self.listCollections
+    
+    def insertDocument(self, col, info):
+        return self.col[col].insert_one(info)
+        
+    
 
-# myFirstDatabase["VIP"].insert_one(
-#  {
-#     "title": "The Favourite",
-#     "genres": [ "Drama", "History" ],
-#     "runtime": 121,
-#     "rated": "R",
-#     "year": 2018,
-#     "directors": [ "Yorgos Lanthimos" ],
-#     "cast": [ "Olivia Colman", "Emma Stone", "Rachel Weisz" ],
-#     "type": "movie"
+mongo = mongoCompass()
+Connect = mongo.connect("mongodb+srv://lethhai3003:jjbufU4yfKCUQLrT@cluster0.wsot8bn.mongodb.net/")
+listDB = mongo.listDatabase()
+listCol = mongo.listCollection("TaiDN")
+# data =  {
+#     "name": "Truong Tan Tai",
+#     "sex": "Bisexual",
+#     "born": 2000,
+#     "company":"Sun Asterik",
+#     "country":"Lam Yen, Dai Minh, Dai Loc, Quang Nam"
 #   }
-# )
-#find Documents     
-findDocument = myFirstDatabase.VIP.find_one()
-print(findDocument["_id"])
+mongo.insertDocument("info",data)
+
