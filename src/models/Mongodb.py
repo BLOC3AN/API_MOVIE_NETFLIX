@@ -26,10 +26,25 @@ class mongoCompass:
         self.listCollections = self.col.list_collection_names()
         print("Current Database:",database,"\nCollections:",self.listCollections)
         return self.listCollections
-    
+    def showDocument(self, col):
+        listDoc = []
+        print("Collection:",col)
+        for i in self.col[col].find():
+            listDoc.append(i)
+        return listDoc
+
+
     def insertDocument(self, col, info):
         return self.col[col].insert_one(info)
         
+    def deleteDocument_One(self, col, key):
+        print("Deleted One",key.values())
+        return self.col[col].delete_one(key)
+    
+    def deleteDocument_Many(self, col, key):
+        print("Deleted Many",key.values())
+        return self.col[col].delete_many(key)   
+    
     
 
 mongo = mongoCompass()
