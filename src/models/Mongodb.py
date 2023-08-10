@@ -1,7 +1,8 @@
 from pymongo.mongo_client import MongoClient
 class mongoCompass:
     def __init__(self):
-        print("Hello MongoDB")
+        self.uri = "mongodb+srv://lethhai3003:jjbufU4yfKCUQLrT@cluster0.wsot8bn.mongodb.net/"
+        self.client = MongoClient(self.uri)
 
     def connect(self,uri):
 
