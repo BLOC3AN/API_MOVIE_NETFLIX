@@ -1,9 +1,12 @@
 from pymongo.mongo_client import MongoClient
-# Replace the placeholder with your Atlas connection string
+
 uri = "mongodb+srv://lethhai3003:U7UJf16dTHjUuBXh@cluster0.oqg68nh.mongodb.net/"
+
 # Create a new client and connect to the server
 client = MongoClient(uri)
-# Send a ping to confirm a successful connection
+
+
+
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
