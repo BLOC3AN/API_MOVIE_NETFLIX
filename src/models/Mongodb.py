@@ -14,25 +14,34 @@ class mongoCompass:
         except Exception as e:
             print(e)
 
-
+    def createDatabase(self, name, collName):
+        newdb = self.client[name]
+        newdb.create_collection(collName)
+        return newdb
+    
     def listDatabase(self):
         # Lấy danh sách tên cơ sở dữ liệu
         self.database_list = self.client.list_database_names()
         print("Databases:",self.database_list)
         return self.database_list
     
+    def insertCollection(self,database, collName):
+        db = self.client[database]
+        newColl = db.create_collection(collName)
+        return newColl
+    
     def listCollection(self, database):
         self.col = self.client[database]
         self.listCollections = self.col.list_collection_names()
         print("Current Database:",database,"\nCollections:",self.listCollections)
         return self.listCollections
+    
     def showDocument(self, col):
         listDoc = []
         print("Collection:",col)
         for i in self.col[col].find():
             listDoc.append(i)
         return listDoc
-
 
     def insertDocument(self, col, info):
         return self.col[col].insert_one(info)
