@@ -24,6 +24,8 @@ class mongoCompass:
         self.database_list = self.client.list_database_names()
         print("Databases:",self.database_list)
         return self.database_list
+    def deleteDatabase(self, nameDb):
+        return self.client.drop_database(nameDb)
     
     def insertCollection(self,database, collName):
         db = self.client[database]
