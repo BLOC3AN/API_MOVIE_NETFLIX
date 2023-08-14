@@ -30,4 +30,4 @@ if __name__ == "__main__":
     # port = args.port
     # app.run(host='0.0.0.0', port=port, debug=os.environ.get("IS_DEBUG", False))
 
-    app.run(host='localhost', port=5001, debug=True)
+    app.run(host='localhost', port=5005, debug=True)
