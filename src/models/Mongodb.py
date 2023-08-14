@@ -74,5 +74,5 @@ listCol = mongo.listCollection("TaiDN")
 #     "company":"Sun Asterik",
 #     "country":"Lam Yen, Dai Minh, Dai Loc, Quang Nam"
 #   }
-mongo.insertDocument("info",data)
+# mongo.insertDocument("info",data)
 
