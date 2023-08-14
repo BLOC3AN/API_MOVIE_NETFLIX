@@ -1,9 +1,12 @@
 from pymongo.mongo_client import MongoClient
-from src.enviroments.config import URI_MONGO_URL
+# from src.enviroments.config import URI_MONGO_URL
+URI_MONGO_URL = "mongodb+srv://lethhai3003:jjbufU4yfKCUQLrT@cluster0.wsot8bn.mongodb.net/movies"
 class MongoHelper:
     def __init__(self):
         self.uri = URI_MONGO_URL
         self.client = MongoClient(self.uri)
+        self.col = self.client["movies"]
+
 
     def connect(self,uri):
 
@@ -12,6 +15,7 @@ class MongoHelper:
 
         try:
             self.client.admin.command('ping')
+
         except Exception as e:
             print(e)
 
@@ -22,16 +26,15 @@ class MongoHelper:
         return self.col[collectionName].insert_one(param)
     
     def deleteDocumentInCollection(self, collectioName: str, id: str):
-        return ....add()
+        return self.col[collectioName].drop(id)
     
-    def updateDocumentInCollection(self, collectionName: str, param: dict):
-        return ....add()
+    def updateDocumentInCollection(self, collectionName: str, param: dict, newvalue: dict):
+        return self.col[collectionName].update_one(param, newvalue)
     
     def getDocumentInCollectionById(self, collectionName: str, id: str):
-        return ....add()
-    
+        return self.col[collectionName].find({"_id": id})
     def getDocumentByProperty(self, collectionName: str, property):
-        return ....add()
+        return self.col[collectionName][property]
 
     # def createDatabase(self, name, collName):
     #     newdb = self.client[name]
@@ -74,4 +77,3 @@ class MongoHelper:
     # def deleteDocument_Many(self, col, key):
     #     return self.col[col].delete_many(key)   
     
-
