@@ -15,7 +15,6 @@ class MongoHelper:
         except Exception as e:
             print(e)
 
-
     def getDocumentsInCollection(self, collectionName: str):
         return self.col[collectionName].find()
         

@@ -14,8 +14,8 @@ def create_app() -> Flask:
 app = create_app()
 app.config['JSON_SORT_KEYS'] = False
 app.config['CORS_HEADERS'] = 'Content-Type'
-api = Api(app, version='1.0', title='API Movies Gateway',
-          description='API Movies Gateway documentation',)
+api = Api(app, version='1.0', title='API Movies',
+          description='API Movies documentation',)
 
 # Please give import route in here
 from src.route.index import *
