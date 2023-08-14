@@ -23,6 +23,10 @@ class MongoHelper:
         except Exception as e:
             print(e)
 
+    def __to_json(self, data):
+        from bson.json_util import dumps, loads
+        return loads(dumps(list(data)))
+    
     def getDocumentsInCollection(self, collectionName: str):
         return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({}))
         
