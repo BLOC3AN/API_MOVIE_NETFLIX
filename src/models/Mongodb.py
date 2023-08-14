@@ -1,12 +1,16 @@
 from pymongo.mongo_client import MongoClient
 # from src.enviroments.config import URI_MONGO_URL
-URI_MONGO_URL = "mongodb+srv://lethhai3003:jjbufU4yfKCUQLrT@cluster0.wsot8bn.mongodb.net/movies"
+URI_MONGO_URL = "mongodb+srv://lethhai3003:jjbufU4yfKCUQLrT@cluster0.wsot8bn.mongodb.net/"
+
 class MongoHelper:
     def __init__(self):
         self.uri = URI_MONGO_URL
         self.client = MongoClient(self.uri)
-        self.col = self.client["movies"]
 
+    def __to_json(self, data):
+        from bson.json_util import dumps, loads
+
+        return loads(dumps(list(data)))
 
     def connect(self,uri):
 
@@ -20,7 +24,7 @@ class MongoHelper:
             print(e)
 
     def getDocumentsInCollection(self, collectionName: str):
-        return self.col[collectionName].find()
+        return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({}))
         
     def createDocumentInCollection(self, collectionName: str, param: dict):
         return self.col[collectionName].insert_one(param)
