@@ -1,4 +1,6 @@
 from pymongo.mongo_client import MongoClient
+from bson.json_util import dumps, loads
+import json
 # from src.enviroments.config import URI_MONGO_URL
 URI_MONGO_URL = "mongodb+srv://lethhai3003:jjbufU4yfKCUQLrT@cluster0.wsot8bn.mongodb.net/"
 
@@ -24,20 +26,41 @@ class MongoHelper:
             print(e)
 
     def __to_json(self, data):
-        from bson.json_util import dumps, loads
+     
         return loads(dumps(list(data)))
     
     def getDocumentsInCollection(self, collectionName: str):
         return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({}))
         
     def createDocumentInCollection(self, collectionName: str, param: dict):
-        return self.col[collectionName].insert_one(param)
+        return MongoClient(URI_MONGO_URL)['movies'][collectionName].insert(param)
     
-    def deleteDocumentInCollection(self, collectioName: str, id: str):
-        return self.col[collectioName].drop(id)
+    def deleteDocumentInCollection(self, collectionName: str, id: str):
+        delete_result = MongoClient(URI_MONGO_URL)['movies'][collectionName].delete_one({
+            "_id": id
+        })
+        
+        deleted_count = delete_result.deleted_count
+        serialized_deleted_count = json.dumps(deleted_count)
+        return serialized_deleted_count
     
-    def updateDocumentInCollection(self, collectionName: str, param: dict, newvalue: dict):
-        return self.col[collectionName].update_one(param, newvalue)
+    def updateDocumentInCollection(self, collectionName: str, param: dict):
+        print("param", param)
+
+        filter = {"_id": param["id"]}
+
+        # Define the update operation you want to perform
+        update_operation = {
+            "$set": {
+                "name": param["name"],
+                "cast": param["cast"],
+                "genre": param["genre"]  # Replace with the field and value you want to update
+            }
+        }
+
+        # Perform the update operation using update_one()
+        result = MongoClient(URI_MONGO_URL)['movies'][collectionName].update_one(filter, update_operation)
+        return json.dumps(result.modified_count)
     
     def getDocumentInCollectionById(self, collectionName: str, id: str):
         return self.col[collectionName].find({"_id": id})
