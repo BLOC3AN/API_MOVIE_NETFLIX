@@ -5,7 +5,7 @@ class MongoHelper:
     def __init__(self):
         self.uri = URI_MONGO_URL
         self.client = MongoClient(self.uri)
-        self.col = self.client["movies"]
+
 
 
     def connect(self,uri):
@@ -21,6 +21,7 @@ class MongoHelper:
 
 
     def getDocumentsInCollection(self, collectionName: str):
+        self.col = self.client["movies"]
         return self.col[collectionName].find()
         
     def createDocumentInCollection(self, collectionName: str, param: dict):
