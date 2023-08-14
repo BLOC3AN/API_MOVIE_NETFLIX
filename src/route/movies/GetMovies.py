@@ -14,11 +14,11 @@ class GetMovies(Resource):
 
     @staticmethod
     def get_process():
-        try:
+        # try:
             listMovies = NormalizeData.process()
             return ResponseSuccess(listMovies)
-        except:
-            return ResponseError()
+        # except:
+        #     return ResponseError()
         
     @api.doc(parser=parser)
     def get(self):
