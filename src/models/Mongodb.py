@@ -19,7 +19,6 @@ class MongoHelper:
         except Exception as e:
             print(e)
 
-
     def getDocumentsInCollection(self, collectionName: str):
         self.col = self.client["movies"]
         return self.col[collectionName].find()
@@ -35,7 +34,8 @@ class MongoHelper:
     
     def getDocumentInCollectionById(self, collectionName: str, id: str):
         return self.col[collectionName].find({"_id": id})
-    def getDocumentByProperty(self, collectionName: str, property):
+    
+    def getDocumentsByProperty(self, collectionName: str, property):
         return self.col[collectionName][property]
 
     # def createDatabase(self, name, collName):
