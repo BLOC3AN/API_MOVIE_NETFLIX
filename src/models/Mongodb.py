@@ -1,6 +1,6 @@
 from pymongo.mongo_client import MongoClient
 # from src.enviroments.config import URI_MONGO_URL
-URI_MONGO_URL = "mongodb+srv://lethhai3003:jjbufU4yfKCUQLrT@cluster0.wsot8bn.mongodb.net/movies"
+URI_MONGO_URL = "mongodb+srv://nguyenduykhoa2601:dHVFwCUEk9ldyfvr@cluster0.i1gof.mongodb.net/"
 class MongoHelper:
     def __init__(self):
         self.uri = URI_MONGO_URL
@@ -19,9 +19,13 @@ class MongoHelper:
         except Exception as e:
             print(e)
 
+    def __to_json(self, data):
+        from bson.json_util import dumps, loads
+        return loads(dumps(list(data)))
+    
     def getDocumentsInCollection(self, collectionName: str):
-        self.col = self.client["movies"]
-        return self.col[collectionName].find()
+        data = MongoClient(URI_MONGO_URL)["myFirstDatabase"][collectionName].find({})
+        return self.__to_json(self, data)
         
     def createDocumentInCollection(self, collectionName: str, param: dict):
         return self.col[collectionName].insert_one(param)
