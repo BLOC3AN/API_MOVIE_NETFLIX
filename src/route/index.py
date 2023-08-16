@@ -15,3 +15,12 @@ from src.route.genres.GetGenres import *
 from src.route.genre.PostCreateGenre import *
 from src.route.genre.DeleteGenre import *
 from src.route.genre.UpdateGenre import *
+
+#actors
+from src.route.actors.GetActors import *
+
+
+#actor
+from src.route.actor.PostCreateActor import *
+from src.route.actor.DeleteActor import *
+from src.route.actor.UpdateActor import *
