@@ -8,6 +8,7 @@ from src.handlers.actor.UpdateActor import NormalizeData
 
 parser = reqparse.RequestParser()
 
+
 parser.add_argument(
     "id",
     type=str,
@@ -15,24 +16,43 @@ parser.add_argument(
     default="",
 )
 
-
 parser.add_argument(
-    "genre",
+    "name",
     type=str,
     required=True,
-    default='Khong xac dinh'
+    default="MARIA OZAWA",
 )
 
+parser.add_argument(
+    "born",
+    type=str,
+    required=True,
+    default="1986",
+)
+
+parser.add_argument(
+    "country",
+    type=str,
+    required=True,
+    default="japanese",
+)
+
+parser.add_argument(
+    "film",
+    type=str,
+    required=True,
+    default="Tho sua ong nuoc may man, Co thu ky",
+)
 
 class UpdateMovie(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def put_process(id: str, genre:str):
+    def put_process(id: str,name: str, country: str, film: str):
         # try:
 
-            data = NormalizeData.process(id=id, genre=genre)
+            data = NormalizeData.process(id=id, name=name, country=country, film=film )
 
             return ResponseSuccess(data)
     
@@ -45,9 +65,11 @@ class UpdateMovie(Resource):
         args = parser.parse_args()
         args_copy = args.copy()
         id= args_copy["id"]
-        genre = args_copy["genre"]
+        name = args_copy["name"]
+        country = args_copy["country"]
+        film = args_copy["film"]
 
-        response = self.put_process(id=id,genre=genre)
+        response = self.put_process(id=id, name=name, country=country, film=film)
 
         return jsonify(response)
 

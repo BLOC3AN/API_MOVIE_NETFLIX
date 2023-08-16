@@ -1,17 +1,19 @@
 from src.models.Mongodb import MongoHelper
-import time
+
 
 class NormalizeData():
-    def process(id: str, genre: str):
-        data = MongoHelper.updateDocumentInCollection(MongoHelper, 'actor', {
-            "id": id,
-            "genre": genre,
-        })
+    @staticmethod
+    def process(id: str, name: str, country: str, film: str):
 
+        param={
+                "id":id,
+                "name": name,
+                "country": country,
+                "film": film 
+            } 
+
+        data = MongoHelper.updateDocumentInCollection(MongoHelper,'actor',param)
         if data:
             return data
         else: 
             return 'Somethings fail went create movies'
-
-
-
