@@ -76,6 +76,6 @@ class UpdateMovie(Resource):
 
 api.add_resource(
     UpdateMovie,
-    "/movie/update-actor",
-    endpoint="/movie/update-actor",
+    "/actor/update-actor",
+    endpoint="/actor/update-actor",
 )

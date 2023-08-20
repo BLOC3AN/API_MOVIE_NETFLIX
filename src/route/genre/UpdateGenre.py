@@ -18,7 +18,7 @@ parser.add_argument(
 
 parser.add_argument(
     "genre",
-    type=str,
+    type=list,
     required=True,
     default='Khong xac dinh'
 )
@@ -29,7 +29,7 @@ class UpdateMovie(Resource):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def put_process(id: str, genre:str):
+    def put_process(id: str, genre:list):
         # try:
 
             data = NormalizeData.process(id=id, genre=genre)
@@ -54,6 +54,6 @@ class UpdateMovie(Resource):
 
 api.add_resource(
     UpdateMovie,
-    "/movie/update-genre",
-    endpoint="/movie/update-genre",
+    "/genre/update-genre",
+    endpoint="/genre/update-genre",
 )

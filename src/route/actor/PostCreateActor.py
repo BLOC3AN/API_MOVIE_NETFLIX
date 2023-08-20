@@ -70,6 +70,6 @@ class PostCreateMovie(Resource):
 
 api.add_resource(
     PostCreateMovie,
-    "/movie/create-actor",
-    endpoint="/movie/create-actor",
+    "/actor/create-actor",
+    endpoint="/actor/create-actor",
 )

@@ -46,6 +46,6 @@ class PostCreateMovie(Resource):
 
 api.add_resource(
     PostCreateMovie,
-    "/movie/create-genre",
-    endpoint="/movie/create-genre",
+    "/genre/create-genre",
+    endpoint="/genre/create-genre",
 )

@@ -25,4 +25,4 @@ class GetMovies(Resource):
         data = self.get_process()
         return jsonify(data)
 
-api.add_resource(GetMovies, "/movies/get-genres", endpoint="/movies/get-genres")
+api.add_resource(GetMovies, "/genre/get-genres", endpoint="/genre/get-genres")

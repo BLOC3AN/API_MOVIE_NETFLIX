@@ -1,10 +1,10 @@
 from src.models.Mongodb import MongoHelper
-import time
+from src.common.utils import generateId
 
 class NormalizeData():
     def process(name: str, genre: str, cast: str):
         data = MongoHelper.createDocumentInCollection(MongoHelper, 'movies', {
-            "_id": NormalizeData.generateId(),
+            "_id": generateId(),
             "name": name,
             "genre": genre,
             "cast": cast
@@ -16,6 +16,5 @@ class NormalizeData():
             return 'Somethings fail went create movies'
 
     
-    def generateId():
-        return str(round(time.time() * 1000))
+
 

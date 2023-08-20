@@ -48,15 +48,18 @@ class MongoHelper:
         print("param", param)
 
         filter = {"_id": param["id"]}
+        listKeys = []
+        for i in param:
+            listKeys.append(i)
+        print(listKeys)
+        for i in listKeys:
+            update_operation = {
+                "$set":{ 
+                        i : param[i]
+                        }
+                    }
 
-        # Define the update operation you want to perform
-        update_operation = {
-            "$set": {
-                "name": param["name"],
-                "cast": param["cast"],
-                "genre": param["genre"]  # Replace with the field and value you want to update
-            }
-        }
+        
 
         # Perform the update operation using update_one()
         result = MongoClient(URI_MONGO_URL)['movies'][collectionName].update_one(filter, update_operation)

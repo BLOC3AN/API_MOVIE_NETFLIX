@@ -46,6 +46,6 @@ class DeleteMovie(Resource):
 
 api.add_resource(
     DeleteMovie,
-    "/movie/delete-actor",
-    endpoint="/movie/delete-actor",
+    "/actor/delete-actor",
+    endpoint="/actor/delete-actor",
 )

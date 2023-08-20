@@ -16,7 +16,7 @@ parser.add_argument(
 )
 
 
-class DeleteMovie(Resource):
+class DeleteGenre(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs)
 
@@ -45,7 +45,7 @@ class DeleteMovie(Resource):
 
 
 api.add_resource(
-    DeleteMovie,
-    "/movie/delete-genre",
-    endpoint="/movie/delete-genre",
+    DeleteGenre,
+    "/genre/delete-genre",
+    endpoint="/genre/delete-genre",
 )

@@ -10,10 +10,13 @@ def create_app() -> Flask:
     CORS(app)
 
     return app
-
+# config app as flask
 app = create_app()
 app.config['JSON_SORT_KEYS'] = False
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+
+#debug in document 
 api = Api(app, version='1.0', title='API Movies',
           description='API Movies documentation',)
 
