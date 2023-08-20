@@ -48,18 +48,11 @@ class MongoHelper:
         print("param", param)
 
         filter = {"_id": param["id"]}
-        listKeys = []
-        for i in param:
-            listKeys.append(i)
-        print(listKeys)
-        for i in listKeys:
-            update_operation = {
-                "$set":{ 
-                        i : param[i]
-                        }
-                    }
+        param.pop("id")
+        print(param)
 
-        
+        update_operation = {"$set":param}
+        print("update_operation", update_operation)
 
         # Perform the update operation using update_one()
         result = MongoClient(URI_MONGO_URL)['movies'][collectionName].update_one(filter, update_operation)
@@ -70,45 +63,3 @@ class MongoHelper:
     
     def getDocumentsByProperty(self, collectionName: str, property):
         return self.col[collectionName][property]
-
-    # def createDatabase(self, name, collName):
-    #     newdb = self.client[name]
-    #     newdb.create_collection(collName)
-    #     return newdb
-    
-    # def listDatabase(self):
-    #     # Lấy danh sách tên cơ sở dữ liệu
-    #     self.database_list = self.client.list_database_names()
-    #     return self.database_list
-    
-    # def deleteDatabase(self, nameDb):
-    #     return self.client.drop_database(nameDb)
-    
-    # def insertCollection(self,database, collName):
-    #     db = self.client[database]
-    #     newColl = db.create_collection(collName)
-    #     return newColl
-    
-    # def listCollection(self, database):
-    #     self.col = self.client[database]
-    #     self.listCollections = self.col.list_collection_names()
-    #     return self.listCollections
-    
-    # def deleteCollection(self, nameDb,nameColl):
-    #     return self.client[nameDb].drop_collection(nameColl)
-    
-    # def showDocument(self, col):
-    #     listDoc = []
-    #     for i in self.col[col].find():
-    #         listDoc.append(i)
-    #     return listDoc
-
-    # def insertDocument(self, col, info):
-    #     return self.col[col].insert_one(info)
-        
-    # def deleteDocument_One(self, col, key):
-    #     return self.col[col].delete_one(key)
-    
-    # def deleteDocument_Many(self, col, key):
-    #     return self.col[col].delete_many(key)   
-    
