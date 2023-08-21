@@ -22,6 +22,13 @@ parser.add_argument(
     required=True,
     default="MARIA OZAWA",
 )
+parser.add_argument(
+    "img",
+    type=str,
+    required=True,
+    default="www.google.com.vn",
+)
+
 
 parser.add_argument(
     "born",
@@ -49,10 +56,10 @@ class UpdateMovie(Resource):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def put_process(id: str,name: str, country: str, film: str):
+    def put_process(id: str,name: str, img:str, country: str, film: str):
         # try:
 
-            data = NormalizeData.process(id=id, name=name, country=country, film=film )
+            data = NormalizeData.process(id=id, name=name, img = img, country=country, film=film )
 
             return ResponseSuccess(data)
     
@@ -66,10 +73,11 @@ class UpdateMovie(Resource):
         args_copy = args.copy()
         id= args_copy["id"]
         name = args_copy["name"]
+        img = args_copy["img"]
         country = args_copy["country"]
         film = args_copy["film"]
 
-        response = self.put_process(id=id, name=name, country=country, film=film)
+        response = self.put_process(id=id, name=name, img=img, country=country, film=film)
 
         return jsonify(response)
 

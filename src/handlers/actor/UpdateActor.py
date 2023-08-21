@@ -3,11 +3,12 @@ from src.models.Mongodb import MongoHelper
 
 class NormalizeData():
     @staticmethod
-    def process(id: str, name: str, country: str, film: str):
+    def process(id: str, img: str, name: str, country: str, film: str):
 
         param={
                 "id":id,
                 "name": name,
+                "img" : img,
                 "country": country,
                 "film": film 
             } 

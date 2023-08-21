@@ -1,11 +1,12 @@
 from src.models.Mongodb import MongoHelper
-import time
 
 class NormalizeData():
-    def process(id: str,name: str, genre: str, cast: str):
+    def process(id: str,name: str,imgBGr:str, description:str, genre: str, cast: str):
         data = MongoHelper.updateDocumentInCollection(MongoHelper, 'movies', {
             "id": id,
             "name": name,
+            "imgBGr":imgBGr,
+            "description":description,
             "genre": genre,
             "cast": cast
         })
