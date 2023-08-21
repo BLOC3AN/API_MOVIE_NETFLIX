@@ -4,7 +4,7 @@ from flask_restx import Resource, reqparse
 from src.common.ResponseError import response as ResponseError
 from src.common.ResponseSuccess import response as ResponseSuccess
 
-from src.handlers.actor.DeleteActor import NormalizeData
+from src.handlers.movie.GetMovie import NormalizeData
 
 parser = reqparse.RequestParser()
 
@@ -16,16 +16,15 @@ parser.add_argument(
 )
 
 
-class DeleteActor(Resource):
+class GetMovie(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def delete_process(id:str):
+    def put_process(id: str):
         # try:
 
             data = NormalizeData.process(id=id)
-
             return ResponseSuccess(data)
     
 
@@ -33,19 +32,18 @@ class DeleteActor(Resource):
         #     return ResponseError()
 
     @api.doc(parser=parser)
-    def delete(self):
+    def put(self):
         args = parser.parse_args()
         args_copy = args.copy()
-        id = args_copy["id"]
-    
+        id= args_copy["id"]
 
-        response = self.delete_process(id=id)
+        response = self.put_process(id=id)
 
         return jsonify(response)
 
 
 api.add_resource(
-    DeleteActor,
-    "/actor/delete-actor",
-    endpoint="/actor/delete-actor",
+    GetMovie,
+    "/movie/get-movie",
+    endpoint="/movie/get-movie",
 )

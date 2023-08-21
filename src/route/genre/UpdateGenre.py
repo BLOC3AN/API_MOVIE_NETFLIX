@@ -24,7 +24,7 @@ parser.add_argument(
 )
 
 
-class UpdateMovie(Resource):
+class UpdateGenre(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs)
 
@@ -53,7 +53,7 @@ class UpdateMovie(Resource):
 
 
 api.add_resource(
-    UpdateMovie,
+    UpdateGenre,
     "/genre/update-genre",
     endpoint="/genre/update-genre",
 )

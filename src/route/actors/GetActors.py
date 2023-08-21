@@ -8,7 +8,7 @@ from flask_restx import Resource, reqparse
 parser = reqparse.RequestParser()
 
 
-class GetMovies(Resource):
+class GetActors(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs) 
 
@@ -25,4 +25,4 @@ class GetMovies(Resource):
         data = self.get_process()
         return jsonify(data)
 
-api.add_resource(GetMovies, "/actor/get-actors", endpoint="/actor/get-actors")
+api.add_resource(GetActors, "/actor/get-actors", endpoint="/actor/get-actors")

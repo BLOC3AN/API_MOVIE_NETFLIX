@@ -59,7 +59,8 @@ class MongoHelper:
         return json.dumps(result.modified_count)
     
     def getDocumentInCollectionById(self, collectionName: str, id: str):
-        return self.col[collectionName].find({"_id": id})
+        return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({"_id":id}))
+
     
     def getDocumentsByProperty(self, collectionName: str, property):
-        return self.col[collectionName][property]
+        return MongoClient(URI_MONGO_URL)['movies'][collectionName][property]

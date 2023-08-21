@@ -18,7 +18,7 @@ parser.add_argument(
 
 
 
-class PostCreateMovie(Resource):
+class PostCreateGenre(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs)
 
@@ -45,7 +45,7 @@ class PostCreateMovie(Resource):
 
 
 api.add_resource(
-    PostCreateMovie,
+    PostCreateGenre,
     "/genre/create-genre",
     endpoint="/genre/create-genre",
 )

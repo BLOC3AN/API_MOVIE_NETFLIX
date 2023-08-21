@@ -7,6 +7,7 @@ from src.route.movies.GetMovies import *
 from src.route.movie.PostCreateMovie import *
 from src.route.movie.DeleteMovie import *
 from src.route.movie.UpdateMovie import *
+from src.route.movie.GetMovie import *
 
 #genres
 from src.route.genres.GetGenres import *
@@ -24,3 +25,4 @@ from src.route.actors.GetActors import *
 from src.route.actor.PostCreateActor import *
 from src.route.actor.DeleteActor import *
 from src.route.actor.UpdateActor import *
+from src.route.actor.GetActor import *

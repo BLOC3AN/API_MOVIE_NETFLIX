@@ -51,7 +51,7 @@ parser.add_argument(
     default="Tho sua ong nuoc may man, Co thu ky",
 )
 
-class UpdateMovie(Resource):
+class UpdateActor(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs)
 
@@ -83,7 +83,7 @@ class UpdateMovie(Resource):
 
 
 api.add_resource(
-    UpdateMovie,
+    UpdateActor,
     "/actor/update-actor",
     endpoint="/actor/update-actor",
 )
