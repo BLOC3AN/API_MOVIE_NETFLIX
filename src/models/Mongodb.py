@@ -33,12 +33,6 @@ class MongoHelper:
         return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({}))
         
     def createDocumentInCollection(self, collectionName: str, param: dict):
-        print(param)
-        listResult = ["genres", "films"]
-        for i in param.keys():
-            for item in listResult:
-                if i == item:
-                    param[i] = param[i].split(",")
         return MongoClient(URI_MONGO_URL)['movies'][collectionName].insert(param)
     
     def deleteDocumentInCollection(self, collectionName: str, id: str):
@@ -51,21 +45,17 @@ class MongoHelper:
         return serialized_deleted_count
     
     def updateDocumentInCollection(self, collectionName: str, param: dict):
-        print("param", param)
-
         filter = {"_id": param["id"]}
         param.pop("id")
-        print(param)
 
         update_operation = {"$set":param}
-        print("update_operation", update_operation)
 
         # Perform the update operation using update_one()
         result = MongoClient(URI_MONGO_URL)['movies'][collectionName].update_one(filter, update_operation)
         return json.dumps(result.modified_count)
     
     def getDocumentInCollectionById(self, collectionName: str, id: str):
-        return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({"_id":id}))
+        return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({"_id":id}))[0]
 
     
     def getDocumentsByProperty(self, collectionName: str, property):
