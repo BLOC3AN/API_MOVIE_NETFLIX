@@ -9,7 +9,7 @@ from src.handlers.genre.PostCreateGenre import NormalizeData
 parser = reqparse.RequestParser()
 
 parser.add_argument(
-    "genre",
+    "genres",
     type=str,
     required=True,
     default="18+ Action",
@@ -23,10 +23,10 @@ class PostCreateGenre(Resource):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def post_process(genre:str):
+    def post_process(genres:str):
         # try:
 
-            data = NormalizeData.process(genre = genre)
+            data = NormalizeData.process(genres = genres)
 
             return ResponseSuccess(data)
     
@@ -38,8 +38,8 @@ class PostCreateGenre(Resource):
     def post(self):
         args = parser.parse_args()
         args_copy = args.copy()
-        genre = args_copy["genre"]
-        response = self.post_process(genre = genre)
+        genres = args_copy["genres"]
+        response = self.post_process(genres = genres)
 
         return jsonify(response)
 

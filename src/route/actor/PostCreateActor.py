@@ -22,7 +22,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "born",
+    "yearOfBirth",
     type=str,
     required=True,
     default="1986",
@@ -36,7 +36,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "film",
+    "films",
     type=str,
     required=True,
     default="Tho sua ong nuoc may man, Co thu ky",
@@ -50,10 +50,10 @@ class PostCreateActor(Resource):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def post_process(name: str,img: str, country: str, born: str, film: str):
+    def post_process(name: str,img: str, country: str, yearOfBirth: str, films: str):
         # try:
 
-            data = NormalizeData.process(name = name, img = img, country=country, born = born, film = film)
+            data = NormalizeData.process(name = name, img = img, country=country, yearOfBirth = yearOfBirth, films = films)
 
             return ResponseSuccess(data)
     
@@ -68,9 +68,9 @@ class PostCreateActor(Resource):
         name = args_copy["name"]
         img = args_copy["img"]
         country = args_copy["country"]
-        born = args_copy["born"]
-        film = args_copy["film"]
-        response = self.post_process(name = name, img = img, country = country, born= born, film=film)
+        yearOfBirth = args_copy["yearOfBirth"]
+        films = args_copy["films"]
+        response = self.post_process(name = name, img = img, country = country, yearOfBirth= yearOfBirth, films=films)
 
         return jsonify(response)
 

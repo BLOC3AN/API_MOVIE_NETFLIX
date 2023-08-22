@@ -27,18 +27,18 @@ parser.add_argument(
     "description",
     type=str,
     required=True,
-    default="",
+    default="Best film",
 )
 
 parser.add_argument(
-    "genre",
+    "genres",
     type=str,
     required=True,
     default='Khong xac dinh'
 )
 
 parser.add_argument(
-    "cast",
+    "casts",
     type=str,
     required=True,
     default="Chi Dan"
@@ -50,10 +50,10 @@ class PostCreateMovie(Resource):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def post_process(name: str, imgBGr:str, description:str, genre:str, cast: str):
+    def post_process(name: str, imgBGr:str, description:str, genres:str, casts: str):
         # try:
 
-            data = NormalizeData.process(name=name, imgBGr=imgBGr, description=description, genre=genre, cast=cast)
+            data = NormalizeData.process(name=name, imgBGr=imgBGr, description=description, genres=genres, casts=casts)
 
             return ResponseSuccess(data)
     
@@ -68,10 +68,10 @@ class PostCreateMovie(Resource):
         name = args_copy["name"]
         imgBGr = args_copy["imgBGr"]
         description = args_copy["description"]
-        genre = args_copy["genre"]
-        cast = args_copy["cast"]
+        genres = args_copy["genres"]
+        casts = args_copy["casts"]
 
-        response = self.post_process(name=name, imgBGr=imgBGr, description=description, genre=genre, cast=cast)
+        response = self.post_process(name=name, imgBGr=imgBGr, description=description, genres=genres, casts=casts)
 
         return jsonify(response)
 

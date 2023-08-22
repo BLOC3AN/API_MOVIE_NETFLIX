@@ -37,10 +37,10 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "genre",
+    "genres",
     type=str,
     required=True,
-    default='Khong xac dinh'
+    default=['Khong xac dinh']
 )
 
 parser.add_argument(
@@ -50,16 +50,14 @@ parser.add_argument(
     default="Chi Dan"
 )
 
-
 class UpdateMovie(Resource):
     def __init__(self, api=None, *args, **kwargs):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def put_process(id: str,name: str, imgBGr:str, description:str, genre:str, cast: str):
+    def put_process(id: str,name: str, imgBGr:str, description:str, genres:str, cast: str):
         # try:
-
-            data = NormalizeData.process(id=id, name=name, imgBGr=imgBGr, description=description, genre=genre, cast=cast)
+            data = NormalizeData.process(id=id, name=name, imgBGr=imgBGr, description=description, genres=genres, cast=cast)
 
             return ResponseSuccess(data)
     
@@ -75,10 +73,10 @@ class UpdateMovie(Resource):
         name = args_copy["name"]
         imgBGr = args_copy["imgBGr"]
         description = args_copy["description"]
-        genre = args_copy["genre"]
+        genres = args_copy["genres"]
         cast = args_copy["cast"]
 
-        response = self.put_process(id=id,name=name, imgBGr=imgBGr, description=description, genre=genre, cast=cast)
+        response = self.put_process(id=id,name=name, imgBGr=imgBGr, description=description, genres=genres, cast=cast)
 
         return jsonify(response)
 

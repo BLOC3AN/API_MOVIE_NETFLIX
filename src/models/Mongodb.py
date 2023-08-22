@@ -33,6 +33,12 @@ class MongoHelper:
         return self.__to_json(self, MongoClient(URI_MONGO_URL)['movies'][collectionName].find({}))
         
     def createDocumentInCollection(self, collectionName: str, param: dict):
+        print(param)
+        listResult = ["genres", "films"]
+        for i in param.keys():
+            for item in listResult:
+                if i == item:
+                    param[i] = param[i].split(",")
         return MongoClient(URI_MONGO_URL)['movies'][collectionName].insert(param)
     
     def deleteDocumentInCollection(self, collectionName: str, id: str):
@@ -64,3 +70,4 @@ class MongoHelper:
     
     def getDocumentsByProperty(self, collectionName: str, property):
         return MongoClient(URI_MONGO_URL)['movies'][collectionName][property]
+

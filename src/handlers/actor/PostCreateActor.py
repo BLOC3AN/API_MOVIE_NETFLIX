@@ -1,14 +1,14 @@
 from src.models.Mongodb import MongoHelper
 from src.common.utils import   generateId
 class NormalizeData():
-    def process(name: str, img: str, country: str, born: str, film: str):
+    def process(name: str, img: str, country: str, yearOfBirth: str, films: str):
         data = MongoHelper.createDocumentInCollection(MongoHelper, 'actor', {
             "_id": generateId(),
             "name": name,
             "img": img,
             "country": country,
-            "born" : born,
-            "film": film,
+            "yearOfBirth" : yearOfBirth,
+            "films": films,
         })
 
         if data:

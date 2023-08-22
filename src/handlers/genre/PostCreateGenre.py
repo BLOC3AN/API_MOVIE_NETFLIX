@@ -2,10 +2,10 @@ from src.models.Mongodb import MongoHelper
 from src.common.utils import  generateId
 
 class NormalizeData():
-    def process(genre: str):
+    def process(genres: str):
         data = MongoHelper.createDocumentInCollection(MongoHelper, 'genre', {
             "_id": generateId(),
-            "genre": genre,
+            "genres": genres,
         })
 
         if data:

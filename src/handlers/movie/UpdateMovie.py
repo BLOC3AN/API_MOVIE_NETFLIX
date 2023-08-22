@@ -1,13 +1,13 @@
 from src.models.Mongodb import MongoHelper
 
 class NormalizeData():
-    def process(id: str,name: str,imgBGr:str, description:str, genre: str, cast: str):
+    def process(id: str,name: str,imgBGr:str, description:str, genres: str, cast: str):
         data = MongoHelper.updateDocumentInCollection(MongoHelper, 'movies', {
             "id": id,
             "name": name,
             "imgBGr":imgBGr,
             "description":description,
-            "genre": genre,
+            "genres": genres,
             "cast": cast
         })
 
