@@ -21,5 +21,5 @@ class NormalizeData():
                 "casts": listCast
             }
         else: 
-            return 'Somethings fail went create movies'
+            return 'Somethings fail went get movie'
 

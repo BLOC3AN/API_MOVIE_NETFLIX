@@ -14,7 +14,7 @@ class NormalizeData():
         if data:
             return data
         else: 
-            return 'Somethings fail went create movies'
+            return 'Somethings fail went update movie'
 
 
 
