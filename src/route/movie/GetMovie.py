@@ -21,7 +21,7 @@ class GetMovie(Resource):
         super().__init__(api, *args, **kwargs)
 
     @staticmethod
-    def put_process(id: str):
+    def get_process(id: str):
         # try:
 
             data = NormalizeData.process(id=id)
@@ -32,12 +32,12 @@ class GetMovie(Resource):
         #     return ResponseError()
 
     @api.doc(parser=parser)
-    def put(self):
+    def get(self):
         args = parser.parse_args()
         args_copy = args.copy()
         id= args_copy["id"]
 
-        response = self.put_process(id=id)
+        response = self.get_process(id=id)
 
         return jsonify(response)
 
