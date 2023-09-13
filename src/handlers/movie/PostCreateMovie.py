@@ -9,7 +9,7 @@ class NormalizeData():
             "imgBGr" : imgBGr,
             "name": name,
             "description": description,
-            "genres": genres,
+            "genres": genres.split(","),
             "casts": casts.split(",")
         })
 

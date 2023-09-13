@@ -34,14 +34,14 @@ parser.add_argument(
     "genres",
     type=str,
     required=True,
-    default='Khong xac dinh'
+    default='1693363335044'
 )
 
 parser.add_argument(
     "casts",
     type=str,
     required=True,
-    default="Chi Dan"
+    default="1692144650064"
 )
 
 

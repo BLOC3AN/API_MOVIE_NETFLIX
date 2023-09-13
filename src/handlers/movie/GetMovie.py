@@ -6,7 +6,7 @@ class NormalizeData():
     def process(id:str):
         data = MongoHelper.getDocumentInCollectionById(MongoHelper,"movies",id)
         listCast = []
-
+        print(data)
         for i in data["casts"]:
             dictCast = MongoHelper.getDocumentInCollectionById(MongoHelper,"actor",i)
             listCast.append(dictCast)
